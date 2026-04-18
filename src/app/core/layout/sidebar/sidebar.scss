@@ -1,0 +1,26 @@
+.trackerLogo {
+    width: 50px;
+    height: 50px;
+}
+
+.featureItems {
+    // height: 100vh !important;
+    ul {
+        li {
+            a:hover {
+                background-color: #1279df;
+                color: white;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            a {
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+.profileDropdown {
+    margin-top: 16rem;
+}

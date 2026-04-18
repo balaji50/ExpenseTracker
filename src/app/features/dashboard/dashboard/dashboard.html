@@ -1,0 +1,169 @@
+<div class="container-fluid">
+
+    <!-- Greeting -->
+    <div class="row align-items-center justify-content-between mb-4">
+        <div class="col-sm-6 col-md-3">
+            <div class="d-flex flex-column">
+                <h4 class="fw-bold w-100">Hello, Balaji 👋</h4>
+                <small class="text-muted">Here’s what’s happening with your
+                    finances
+                    today.
+                </small>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+            <input type="date" class="form-control" />
+        </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="row g-3">
+
+        <div class="col-sm-6 col-md-3">
+            <div class="card shadow-sm border-0 p-3">
+                <h6 class="text-muted">Total Income</h6>
+                <h5 class="text-success fw-bold">₹54,200</h5>
+                <small class="text-success">↑ 12% from last month</small>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+            <div class="card shadow-sm border-0 p-3">
+                <h6 class="text-muted">Total Expense</h6>
+                <h5 class="text-danger fw-bold">₹21,430</h5>
+                <small class="text-danger">↑ 8% from last month</small>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+            <div class="card shadow-sm border-0 p-3">
+                <h6 class="text-muted">Balance</h6>
+                <h5 class="text-primary fw-bold">₹32,770</h5>
+                <small class="text-primary">↑ 18% from last month</small>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+            <div class="card shadow-sm border-0 p-3">
+                <h6 class="text-muted">Savings</h6>
+                <h5 class="text-warning fw-bold">₹8,600</h5>
+                <small class="text-warning">↑ 15% from last month</small>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Charts -->
+    <div class="row mt-4">
+
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 p-3">
+                <h6 class="fw-bold">Expense Overview</h6>
+                <div class="text-center text-muted py-5">
+                    Bar Chart (we add later)
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 p-3">
+                <h6 class="fw-bold">Expense by Category</h6>
+                <div class="text-center text-muted py-5">
+                    Pie Chart (we add later)
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Recent Transactions -->
+    <div class="card shadow-sm border-0 mt-4 p-3">
+
+        <div class="d-flex justify-content-between mb-3 transationHead">
+            <h6 class="fw-bold">Recent Transactions</h6>
+            <a class="text-primary">View All</a>
+        </div>
+
+        <!-- TABLE VIEW: Desktop only (md and above) -->
+        <div class="d-none d-md-block">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Type</th>
+                        <th class="text-end">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>May 25</td>
+                        <td>Swiggy Order</td>
+                        <td>Food</td>
+                        <td><span class="badge bg-danger">Expense</span></td>
+                        <td class="text-danger text-end fw-semibold">-₹520</td>
+                    </tr>
+                    <tr>
+                        <td>May 24</td>
+                        <td>Salary</td>
+                        <td>Income</td>
+                        <td><span class="badge bg-success">Income</span></td>
+                        <td
+                            class="text-success text-end fw-semibold">+₹54,200</td>
+                    </tr>
+                    <tr>
+                        <td>May 23</td>
+                        <td>Uber Ride</td>
+                        <td>Travel</td>
+                        <td><span class="badge bg-danger">Expense</span></td>
+                        <td class="text-danger text-end fw-semibold">-₹286</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- CARD LIST VIEW: Mobile only (below md) -->
+        <div class="d-md-none d-flex flex-column gap-2">
+
+            <div
+                class="d-flex justify-content-between align-items-center border rounded px-3 py-2">
+                <div>
+                    <div class="fw-semibold small">Swiggy Order</div>
+                    <div class="text-muted">May 25 &middot; Food</div>
+                </div>
+                <div class="text-end">
+                    <div class="text-danger fw-semibold small">-₹520</div>
+                    <span class="badge bg-danger">Expense</span>
+                </div>
+            </div>
+
+            <div
+                class="d-flex justify-content-between align-items-center border rounded px-3 py-2">
+                <div>
+                    <div class="fw-semibold small">Salary</div>
+                    <div class="text-muted">May 24 &middot; Income</div>
+                </div>
+                <div class="text-end">
+                    <div class="text-success fw-semibold small">+₹54,200</div>
+                    <span class="badge bg-success">Income</span>
+                </div>
+            </div>
+
+            <div
+                class="d-flex justify-content-between align-items-center border rounded px-3 py-2">
+                <div>
+                    <div class="fw-semibold small">Uber Ride</div>
+                    <div class="text-muted">May 23 &middot; Travel</div>
+                </div>
+                <div class="text-end">
+                    <div class="text-danger fw-semibold small">-₹286</div>
+                    <span class="badge bg-danger">Expense</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
