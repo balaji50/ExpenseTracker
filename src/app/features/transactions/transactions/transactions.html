@@ -1,1 +1,176 @@
-<p>transactions works!</p>
+<div class="container-fluid p-4">
+  <!-- Header -->
+  <div class="row mb-4">
+    <div class="col">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h1 class="h3 mb-2">Transactions</h1>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item">
+                <a href="#" class="text-decoration-none">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Transactions
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div>
+          <button class="btn btn-primary">
+            <i class="bi bi-plus-circle me-2"></i>
+            Add Expense
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="row g-3 align-items-center">
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-text">
+              <i class="bi bi-search"></i>
+            </span>
+            <input type="text" class="form-control" placeholder="Search transactions..." [(ngModel)]="filter.search">
+          </div>
+        </div>
+        
+        <div class="col-md-2">
+          <select class="form-select" [(ngModel)]="filter.category">
+            <option value="">All Categories</option>
+            <option value="food">Food & Dining</option>
+            <option value="transport">Transport</option>
+            <option value="bills">Bills & Utilities</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="salary">Salary</option>
+          </select>
+        </div>
+        
+        <div class="col-md-2">
+          <select class="form-select" [(ngModel)]="filter.type">
+            <option value="">All Types</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+        </div>
+        
+        <div class="col-md-2">
+          <select class="form-select" [(ngModel)]="filter.dateRange" (change)="onDateRangeChange($event)">
+            <option value="this-month">This Month</option>
+            <option value="last-month">Last Month</option>
+            <option value="this-year">This Year</option>
+            <option value="custom">Custom Range</option>
+          </select>
+        </div>
+      </div>
+      
+      <!-- Custom Date Range Pickers (shown when custom is selected) -->
+      <div class="row g-3 mt-3" *ngIf="filter.dateRange === 'custom'">
+        <div class="col-md-6">
+          <div class="row align-items-center">
+            <div class="col-auto">
+              <label for="startDate" class="form-label mb-0">From:</label>
+            </div>
+            <div class="col">
+              <input 
+                type="date" 
+                id="startDate"
+                class="form-control"
+                [(ngModel)]="filter.startDate"
+                (change)="onDateFilterChange()"
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row align-items-center">
+            <div class="col-auto">
+              <label for="endDate" class="form-label mb-0">To:</label>
+            </div>
+            <div class="col">
+              <input 
+                type="date" 
+                id="endDate"
+                class="form-control"
+                [(ngModel)]="filter.endDate"
+                (change)="onDateFilterChange()"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row mt-3">
+        <div class="col-auto">
+          <button class="btn btn-outline-secondary me-2">
+            <i class="bi bi-funnel me-2"></i>
+            Filter
+          </button>
+          <button class="btn btn-outline-danger" (click)="clearFilters()">
+            Clear
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Transactions List -->
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">Type</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Payment Method</th>
+            <th scope="col" class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of filteredTransactions">
+            <td>{{ formatDate(transaction.date) }}</td>
+            <td>{{ transaction.description }}</td>
+            <td>
+              <span class="badge bg-light text-dark me-2">
+                <i class="bi {{ transaction.categoryIcon }}"></i>
+                {{ transaction.category }}
+              </span>
+            </td>
+            <td>
+              <span class="badge" [class.bg-success]="transaction.type === 'income'" [class.bg-danger]="transaction.type === 'expense'">
+                {{ transaction.type === 'income' ? 'Income' : 'Expense' }}
+              </span>
+            </td>
+            <td class="fw-bold" [class.text-success]="transaction.type === 'income'" [class.text-danger]="transaction.type === 'expense'">
+              {{ transaction.type === 'income' ? '+' : '-' }}{{ formatCurrency(transaction.amount) }}
+            </td>
+            <td>
+              <span class="badge bg-light text-dark">
+                <i class="bi {{ transaction.paymentIcon }}"></i>
+                {{ transaction.paymentMethod }}
+              </span>
+            </td>
+            <td class="text-end">
+              <div class="dropdown">
+                <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown">
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Edit</a></li>
+                  <li><a class="dropdown-item" href="#">Delete</a></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
