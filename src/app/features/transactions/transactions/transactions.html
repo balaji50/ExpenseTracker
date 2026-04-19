@@ -17,7 +17,7 @@
           </nav>
         </div>
         <div>
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" routerLink="/expenses/add-expense">
             <i class="bi bi-plus-circle me-2"></i>
             Add Expense
           </button>
@@ -40,7 +40,7 @@
         </div>
         
         <div class="col-md-2">
-          <select class="form-select" [(ngModel)]="filter.category">
+          <select class="form-select flex-grow-1" [(ngModel)]="filter.category">
             <option value="">All Categories</option>
             <option value="food">Food & Dining</option>
             <option value="transport">Transport</option>
@@ -51,7 +51,7 @@
         </div>
         
         <div class="col-md-2">
-          <select class="form-select" [(ngModel)]="filter.type">
+          <select class="form-select flex-grow-1" [(ngModel)]="filter.type">
             <option value="">All Types</option>
             <option value="income">Income</option>
             <option value="expense">Expense</option>
@@ -59,7 +59,7 @@
         </div>
         
         <div class="col-md-2">
-          <select class="form-select" [(ngModel)]="filter.dateRange" (change)="onDateRangeChange($event)">
+          <select class="form-select flex-grow-1" [(ngModel)]="filter.dateRange" (change)="onDateRangeChange($event)">
             <option value="this-month">This Month</option>
             <option value="last-month">Last Month</option>
             <option value="this-year">This Year</option>
@@ -120,57 +120,107 @@
 
   <!-- Transactions List -->
   <div class="card">
-    <div class="table-responsive">
-      <table class="table table-hover">
-        <thead class="table-light">
-          <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Description</th>
-            <th scope="col">Category</th>
-            <th scope="col">Type</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Payment Method</th>
-            <th scope="col" class="text-end">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let transaction of filteredTransactions">
-            <td>{{ formatDate(transaction.date) }}</td>
-            <td>{{ transaction.description }}</td>
-            <td>
-              <span class="badge bg-light text-dark me-2">
-                <i class="bi {{ transaction.categoryIcon }}"></i>
-                {{ transaction.category }}
-              </span>
-            </td>
-            <td>
-              <span class="badge" [class.bg-success]="transaction.type === 'income'" [class.bg-danger]="transaction.type === 'expense'">
-                {{ transaction.type === 'income' ? 'Income' : 'Expense' }}
-              </span>
-            </td>
-            <td class="fw-bold" [class.text-success]="transaction.type === 'income'" [class.text-danger]="transaction.type === 'expense'">
-              {{ transaction.type === 'income' ? '+' : '-' }}{{ formatCurrency(transaction.amount) }}
-            </td>
-            <td>
-              <span class="badge bg-light text-dark">
-                <i class="bi {{ transaction.paymentIcon }}"></i>
-                {{ transaction.paymentMethod }}
-              </span>
-            </td>
-            <td class="text-end">
-              <div class="dropdown">
-                <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown">
-                  <i class="bi bi-three-dots-vertical"></i>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Edit</a></li>
-                  <li><a class="dropdown-item" href="#">Delete</a></li>
-                </ul>
+    <!-- TABLE VIEW: Desktop only (md and above) -->
+    <div class="d-none d-md-block">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Description</th>
+              <th scope="col">Category</th>
+              <th scope="col">Type</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Payment Method</th>
+              <th scope="col" class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let transaction of filteredTransactions">
+              <td>{{ formatDate(transaction.date) }}</td>
+              <td>{{ transaction.description }}</td>
+              <td>
+                <span class="badge bg-light text-dark me-2">
+                  <i class="bi {{ transaction.categoryIcon }}"></i>
+                  {{ transaction.category }}
+                </span>
+              </td>
+              <td>
+                <span class="badge" [class.bg-success]="transaction.type === 'income'" [class.bg-danger]="transaction.type === 'expense'">
+                  {{ transaction.type === 'income' ? 'Income' : 'Expense' }}
+                </span>
+              </td>
+              <td class="fw-bold" [class.text-success]="transaction.type === 'income'" [class.text-danger]="transaction.type === 'expense'">
+                {{ transaction.type === 'income' ? '+' : '-' }}{{ formatCurrency(transaction.amount) }}
+              </td>
+              <td>
+                <span class="badge bg-light text-dark">
+                  <i class="bi {{ transaction.paymentIcon }}"></i>
+                  {{ transaction.paymentMethod }}
+                </span>
+              </td>
+              <td class="text-end">
+                <div class="dropdown">
+                  <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown">
+                    <i class="bi bi-three-dots-vertical"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                    <li><a class="dropdown-item" href="#">Delete</a></li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CARD LIST VIEW: Mobile only (below md) -->
+    <div class="d-md-none">
+      <div class="p-3">
+        <div class="overflow-auto">
+          <div class="d-flex gap-3 mobile-scroll-container">
+            <div 
+              *ngFor="let transaction of filteredTransactions"
+              class="border rounded p-3 mb-3 mobile-card">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <div class="flex-grow-1">
+                  <div class="fw-semibold mb-1 text-truncate">{{ transaction.description }}</div>
+                  <div class="fw-bold fs-5" [class.text-success]="transaction.type === 'income'" [class.text-danger]="transaction.type === 'expense'">
+                    {{ transaction.type === 'income' ? '+' : '-' }}{{ formatCurrency(transaction.amount) }}
+                  </div>
+                </div>
               </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              <div class="d-flex align-items-center gap-2 text-muted small mb-2">
+                <span class="text-nowrap mobile-no-shrink">{{ formatDate(transaction.date) }}</span>
+                <span class="badge bg-light text-dark text-nowrap mobile-no-shrink">
+                  <i class="bi {{ transaction.categoryIcon }}"></i>
+                  {{ transaction.category }}
+                </span>
+                <span class="badge text-nowrap mobile-no-shrink" [class.bg-success]="transaction.type === 'income'" [class.bg-danger]="transaction.type === 'expense'">
+                  {{ transaction.type === 'income' ? 'Income' : 'Expense' }}
+                </span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="badge bg-light text-dark small text-nowrap mobile-no-shrink">
+                  <i class="bi {{ transaction.paymentIcon }}"></i>
+                  {{ transaction.paymentMethod }}
+                </span>
+                <div class="dropdown mobile-no-shrink">
+                  <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown">
+                    <i class="bi bi-three-dots-vertical"></i>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                    <li><a class="dropdown-item" href="#">Delete</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
