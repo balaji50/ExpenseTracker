@@ -1,1 +1,185 @@
-<p>add-expense works!</p>
+<div class="container-fluid p-4">
+  <!-- Header -->
+  <div class="row mb-4">
+    <div class="col">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h1 class="h3 mb-2">Add New Expense</h1>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item">
+                <a routerLink="/expenses" class="text-decoration-none">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a routerLink="/expenses" class="text-decoration-none">Expenses</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Add Expense
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div>
+          <button class="btn btn-outline-secondary me-2" (click)="onCancel()">
+            <i class="bi bi-arrow-left me-2"></i>
+            Back
+          </button>
+          <button class="btn btn-outline-primary">
+            <i class="bi bi-person-circle me-2"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Content -->
+  <div class="row">
+    <!-- Form Section -->
+    <div class="col-lg-7">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <form (ngSubmit)="onSubmit()">
+            <!-- Title -->
+            <div class="mb-4">
+              <label for="title" class="form-label fw-semibold">Title</label>
+              <input 
+                type="text" 
+                id="title"
+                class="form-control form-control-lg border-0 bg-light"
+                placeholder="Enter expense title"
+                [(ngModel)]="expenseForm.title"
+                name="title"
+                required
+              >
+            </div>
+
+            <!-- Amount -->
+            <div class="mb-4">
+              <label for="amount" class="form-label fw-semibold">Amount</label>
+              <div class="input-group input-group-lg">
+                <span class="input-group-text bg-light border-0">₹</span>
+                <input 
+                  type="number" 
+                  id="amount"
+                  class="form-control border-0 bg-light"
+                  placeholder="Enter amount"
+                  [(ngModel)]="expenseForm.amount"
+                  name="amount"
+                  min="0"
+                  step="0.01"
+                  required
+                >
+              </div>
+            </div>
+
+            <!-- Category -->
+            <div class="mb-4">
+              <label for="category" class="form-label fw-semibold">Category</label>
+              <select 
+                id="category"
+                class="form-select form-select-lg border-0 bg-light"
+                [(ngModel)]="expenseForm.category"
+                name="category"
+                required
+              >
+                <option value="">Select category</option>
+                <option *ngFor="let cat of categories" [value]="cat.value">
+                  {{ cat.label }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Date -->
+            <div class="mb-4">
+              <label for="date" class="form-label fw-semibold">Date</label>
+              <input 
+                type="date" 
+                id="date"
+                class="form-control form-control-lg border-0 bg-light"
+                [(ngModel)]="expenseForm.date"
+                name="date"
+                required
+              >
+            </div>
+
+            <!-- Payment Method -->
+            <div class="mb-4">
+              <label for="paymentMethod" class="form-label fw-semibold">Payment Method</label>
+              <select 
+                id="paymentMethod"
+                class="form-select form-select-lg border-0 bg-light"
+                [(ngModel)]="expenseForm.paymentMethod"
+                name="paymentMethod"
+                required
+              >
+                <option value="">Select payment method</option>
+                <option *ngFor="let method of paymentMethods" [value]="method.value">
+                  {{ method.label }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Account -->
+            <div class="mb-4">
+              <label for="account" class="form-label fw-semibold">Account</label>
+              <select 
+                id="account"
+                class="form-select form-select-lg border-0 bg-light"
+                [(ngModel)]="expenseForm.account"
+                name="account"
+                required
+              >
+                <option value="">Select account</option>
+                <option *ngFor="let acc of accounts" [value]="acc.value">
+                  {{ acc.label }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Notes -->
+            <div class="mb-4">
+              <label for="notes" class="form-label fw-semibold">Notes (Optional)</label>
+              <textarea 
+                id="notes"
+                class="form-control border-0 bg-light"
+                rows="3"
+                placeholder="Add a note here..."
+                [(ngModel)]="expenseForm.notes"
+                name="notes"
+              ></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid">
+              <button 
+                type="submit" 
+                class="btn btn-primary btn-lg"
+                [disabled]="!isFormValid()"
+              >
+                <i class="bi bi-plus-circle me-2"></i>
+                Add Expense
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Illustration Section -->
+    <div class="col-lg-5">
+      <div class="d-flex align-items-center justify-content-center" style="min-height: 600px;">
+        <div class="text-center">
+          <img 
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23f8f9fa' width='400' height='300'/%3E%3C!-- Phone --%3E%3Crect x='50' y='100' width='80' height='140' rx='10' fill='%234285f4'/%3E%3Crect x='60' y='110' width='60' height='100' fill='white'/%3E%3Ccircle cx='90' cy='220' r='5' fill='white'/%3E%3C!-- Cards --%3E%3Crect x='150' y='140' width='100' height='60' rx='5' fill='%23ea4335'/%3E%3Crect x='160' y='150' width='80' height='8' fill='white'/%3E%3Crect x='160' y='165' width='60' height='5' fill='white' opacity='0.7'/%3E%3Crect x='170' y='180' width='40' height='8' fill='white' opacity='0.5'/%3E%3C!-- Coins --%3E%3Cellipse cx='280' cy='200' rx='25' ry='8' fill='%23fbbc04'/%3E%3Cellipse cx='320' cy='210' rx='20' ry='6' fill='%2334a853'/%3E%3Cellipse cx='300' cy='220' rx='18' ry='5' fill='%23ea4335'/%3E%3C!-- Receipt --%3E%3Crect x='250' y='120' width='60' height='80' fill='white' stroke='%23ddd' stroke-width='1'/%3E%3Cline x1='260' y1='130' x2='300' y2='130' stroke='%23ccc' stroke-width='2'/%3E%3Cline x1='260' y1='140' x2='290' y2='140' stroke='%23ccc' stroke-width='1'/%3E%3Cline x1='260' y1='150' x2='295' y2='150' stroke='%23ccc' stroke-width='1'/%3E%3Cline x1='260' y1='160' x2='285' y2='160' stroke='%23ccc' stroke-width='1'/%3E%3Cline x1='260' y1='170' x2='300' y2='170' stroke='%23ccc' stroke-width='2'/%3E%3C/svg%3E"
+            alt="Expense illustration"
+            class="img-fluid mb-4"
+            style="max-width: 300px;"
+          >
+          <p class="text-muted">
+            Track your expenses efficiently and manage your finances better.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { Transaction, TransactionFilter } from './transaction.model';
 
 @Component({
   selector: 'app-transactions',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './transactions.html',
   styleUrl: './transactions.scss',
 })
