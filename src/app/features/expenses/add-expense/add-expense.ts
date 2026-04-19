@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ExpenseForm, Category, PaymentMethod, Account } from './add-expense.model';
-import { Transaction } from '../../transactions/transactions/transaction.model';
+import { Transaction } from '../../../model/transaction.model';
+import { Accounts, Categories, PaymentMethods } from '../../../dummy-data/dummy-object';
 
 @Component({
   selector: 'app-add-expense',
@@ -11,6 +12,10 @@ import { Transaction } from '../../transactions/transactions/transaction.model';
   templateUrl: './add-expense.html',
 })
 export class AddExpense {
+
+  categories = Categories;
+  paymentMethods = PaymentMethods;
+  accounts = Accounts;
   expenseForm: ExpenseForm = {
     title: '',
     amount: 0,
@@ -20,35 +25,6 @@ export class AddExpense {
     account: '',
     notes: ''
   };
-
-  categories: Category[] = [
-    { value: 'food', label: 'Food & Dining' },
-    { value: 'transport', label: 'Transport' },
-    { value: 'bills', label: 'Bills & Utilities' },
-    { value: 'entertainment', label: 'Entertainment' },
-    { value: 'shopping', label: 'Shopping' },
-    { value: 'health', label: 'Healthcare' },
-    { value: 'education', label: 'Education' },
-    { value: 'salary', label: 'Salary' },
-    { value: 'freelance', label: 'Freelance' },
-    { value: 'investment', label: 'Investment' },
-    { value: 'other', label: 'Other' }
-  ];
-
-  paymentMethods: PaymentMethod[] = [
-    { value: 'upi', label: 'UPI' },
-    { value: 'card', label: 'Credit/Debit Card' },
-    { value: 'cash', label: 'Cash' },
-    { value: 'bank', label: 'Bank Transfer' },
-    { value: 'wallet', label: 'Digital Wallet' }
-  ];
-
-  accounts: Account[] = [
-    { value: 'personal', label: 'Personal Account' },
-    { value: 'business', label: 'Business Account' },
-    { value: 'savings', label: 'Savings Account' },
-    { value: 'credit', label: 'Credit Card' }
-  ];
 
   constructor(private router: Router) {}
 
@@ -80,11 +56,12 @@ export class AddExpense {
   }
 
   isFormValid(): boolean {
-    return !!(this.expenseForm.title && 
-              this.expenseForm.amount > 0 && 
-              this.expenseForm.category && 
-              this.expenseForm.paymentMethod && 
-              this.expenseForm.account);
+    return !!(
+    this.expenseForm.title && 
+    this.expenseForm.amount > 0 && 
+    this.expenseForm.category && 
+    this.expenseForm.paymentMethod && 
+    this.expenseForm.account);
   }
 
   private generateId(): string {
