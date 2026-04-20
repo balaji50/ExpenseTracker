@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ExpenseForm, Category, PaymentMethod, Account } from './add-expense.model';
+import { ExpenseForm, Category, PaymentMethod, Account } from '../../../model/add-expense.model';
 import { Transaction } from '../../../model/transaction.model';
 import { Accounts, Categories, PaymentMethods } from '../../../dummy-data/dummy-object';
 

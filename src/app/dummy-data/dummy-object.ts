@@ -1,4 +1,5 @@
-import { Account, Category, PaymentMethod } from "../features/expenses/add-expense/add-expense.model";
+import { Account, Category, PaymentMethod } from "../model/add-expense.model";
+import { Activities, Groups } from "../model/groups.model";
 import { Transaction } from "../model/transaction.model";
 
 
@@ -87,4 +88,46 @@ export const Accounts: Account[] = [
   { value: 'business', label: 'Business Account' },
   { value: 'savings', label: 'Savings Account' },
   { value: 'credit', label: 'Credit Card' }
+];
+
+export const GroupsList: Groups[] = [
+  {
+    name: 'Goa Trip',
+    members: 5,
+    type: 'owe',
+    amount: 2450
+  },
+  {
+    name: 'Office Team',
+    members: 8,
+    type: 'get',
+    amount: 1120
+  },
+  {
+    name: 'Roommates',
+    members: 3,
+    type: 'owe',
+    amount: 890
+  }
+];
+
+export const ActivitiesList: Activities[] = [
+  {
+    date: 'May 25, 2024',
+    text: 'Dinner bill added by Saravanan',
+    group: 'Goa Trip',
+    amount: 1250
+  },
+  {
+    date: 'May 24, 2024',
+    text: 'Travel expense added by You',
+    group: 'Office Team',
+    amount: 860
+  },
+  {
+    date: 'May 23, 2024',
+    text: 'Grocery bill added by Karthik',
+    group: 'Roommates',
+    amount: 1230
+  }
 ];

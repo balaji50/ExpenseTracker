@@ -1,1 +1,94 @@
-<p>groups works!</p>
+<div class="container py-3">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h5 class="fw-bold mb-0">Groups</h5>
+            <!-- <small class="text-muted">Dashboard > Groups</small> -->
+        </div>
+
+        <button class="btn btn-primary btn-sm">
+            + Create Group
+        </button>
+    </div>
+
+    <!-- Group Cards -->
+    <div class="row g-3 mt-5">
+        <h5>Your Groups</h5>
+        @for (group of groups; track group) {
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card shadow-sm border-0 p-3 h-100">
+
+                <!-- Title -->
+                <div class="d-flex justify-content-between">
+                    <h6 class="fw-bold">{{ group.name }}</h6>
+                    <span>⋯</span>
+                </div>
+
+                <small class="text-muted mb-2">
+                    <i class="bi bi-people-fill"></i> {{ group.members }} Members
+                </small>
+
+                <!-- Amount -->
+                @if (group.type === 'owe') {
+                <div class="text-danger small">
+                    You owe
+                    <h6 class="fw-bold text-danger">₹ {{ group.amount }}</h6>
+                </div>
+                }
+
+                @if (group.type === 'get') {
+                <div class="text-success small">
+                    You will get
+                    <h6 class="fw-bold text-success">₹ {{ group.amount }}</h6>
+                </div>
+                }
+
+                <!-- Progress Bar -->
+                <div class="progress mt-2">
+                    <div
+                        class="progress-bar"
+                        [ngClass]="group.type === 'owe' ? 'bg-danger' : 'bg-success'">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        }
+
+    </div>
+
+    <!-- Recent Activities -->
+    <div class="card shadow-sm border-0 mt-4">
+        <div class="card-body">
+
+            <h6 class="fw-bold mb-3">Recent Activities</h6>
+
+            <div class="table-responsive">
+                <table class="table align-middle mb-0">
+
+                    <tbody>
+                        @for (act of activities; track act) {
+                        <tr>
+                            <td class="text-muted small">{{ act.date }}</td>
+
+                            <td>
+                                <div>{{ act.text }}</div>
+                                <small class="text-muted">{{ act.group
+                                    }}</small>
+                            </td>
+
+                            <td class="text-end fw-semibold">
+                                ₹ {{ act.amount }}
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>

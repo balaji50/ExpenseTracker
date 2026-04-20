@@ -4,6 +4,8 @@ import { Dashboard } from './features/dashboard/dashboard/dashboard';
 import { Transactions } from './features/transactions/transactions/transactions';
 import { Expenses } from './features/expenses/expenses/expenses';
 import { AddExpense } from './features/expenses/add-expense/add-expense';
+import { group } from 'console';
+import { Groups } from './features/groups/groups/groups';
 
 export const routes: Routes = [
     {
@@ -25,6 +27,10 @@ export const routes: Routes = [
             {
                 path: 'expenses/add-expense',
                 component: AddExpense
+            },
+            {
+                path: 'groups',
+                component: Groups
             },
             {
                 path: '',
