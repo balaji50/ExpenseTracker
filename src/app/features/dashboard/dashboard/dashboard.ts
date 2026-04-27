@@ -18,10 +18,12 @@ export class Dashboard {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     datasets: [
       {
+        maxBarThickness: 25,
         data: [30000, 35000, 40000, 28000, 45000, 50000],
         label: 'Income'
       },
       {
+        maxBarThickness: 25,
         data: [15000, 18000, 20000, 17000, 22000, 25000],
         label: 'Expense'
       }
@@ -29,7 +31,11 @@ export class Dashboard {
   };
 
   barChartOptions: ChartConfiguration<'bar'>['options'] = {
-    responsive: true
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true }
+    }
   };
 
   // Pie chart
@@ -43,6 +49,16 @@ export class Dashboard {
   };
 
   pieChartOptions: ChartConfiguration<'pie'>['options'] = {
-    responsive: true
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom',
+        labels: {
+          usePointStyle: true,
+        }
+      }
+    }
   };
 }

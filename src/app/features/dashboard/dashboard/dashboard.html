@@ -21,8 +21,7 @@
     <div class="row g-3">
 
         <div class="col-sm-6 col-md-3">
-            <div
-                class="card shadow-sm border-0 p-3 d-flex flex-row justify-content-between align-items-center">
+            <div class="card shadow-sm border-0 p-3 d-flex flex-row justify-content-between align-items-center">
                 <div>
                     <h6 class="text-muted">Total Income</h6>
                     <h5 class="text-success fw-bold">₹54,200</h5>
@@ -35,8 +34,7 @@
         </div>
 
         <div class="col-sm-6 col-md-3">
-            <div
-                class="card shadow-sm border-0 p-3 d-flex flex-row justify-content-between align-items-center">
+            <div class="card shadow-sm border-0 p-3 d-flex flex-row justify-content-between align-items-center">
                 <div>
                     <h6 class="text-muted">Total Expense</h6>
                     <h5 class="text-danger fw-bold">₹21,430</h5>
@@ -49,8 +47,7 @@
         </div>
 
         <div class="col-sm-6 col-md-3">
-            <div
-                class="card shadow-sm border-0 p-3 d-flex flex-row justify-content-between align-items-center">
+            <div class="card shadow-sm border-0 p-3 d-flex flex-row justify-content-between align-items-center">
                 <div>
                     <h6 class="text-muted">Balance</h6>
                     <h5 class="text-primary fw-bold">₹32,770</h5>
@@ -63,8 +60,7 @@
         </div>
 
         <div class="col-sm-6 col-md-3">
-            <div
-                class="card shadow-sm border-0 p-3 d-flex flex-row justify-content-between align-items-center">
+            <div class="card shadow-sm border-0 p-3 d-flex flex-row justify-content-between align-items-center">
                 <div>
                     <h6 class="text-muted">Savings</h6>
                     <h5 class="text-warning fw-bold">₹8,600</h5>
@@ -79,36 +75,30 @@
     </div>
 
     <!-- Charts -->
-    <div class="row mt-4">
+    <div class="container-fluid p-4">
+        <div class="row mt-4">
 
-        <div class="col-md-6 mb-3 mb-md-0">
-            <div class="card shadow-sm border-0 p-3">
-                <h6 class="fw-bold">Expense Overview</h6>
-                <div class="d-flex justify-content-center mt-4">
-                    <canvas
-                        baseChart
-                        [data]="barChartData"
-                        [options]="barChartOptions"
-                        [type]="'bar'">
-                    </canvas>
+            <div class="col-12 col-lg-6">
+                <div class="card shadow-sm border-0 p-3 h-100">
+                    <h6 class="fw-bold mb-4">Expense Overview</h6>
+                    <div class="position-relative vh-75 barChart">
+                        <canvas baseChart [data]="barChartData" [options]="barChartOptions" [type]="'bar'">
+                        </canvas>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-6">
-            <div class="card shadow-sm border-0 p-3">
-                <h6 class="fw-bold">Expense by Category</h6>
-                <div class="d-flex justify-content-center mt-4 pieChart">
-                    <canvas
-                        baseChart
-                        [data]="pieChartData"
-                        [options]="pieChartOptions"
-                        [type]="'pie'">
-                    </canvas>
+            <div class="col-12 col-lg-6">
+                <div class="card shadow-sm border-0 p-3 h-100">
+                    <h6 class="fw-bold mb-4">Expense by Category</h6>
+                    <div class="position-relative vh-75">
+                        <canvas baseChart [data]="pieChartData" [options]="pieChartOptions" [type]="'pie'">
+                        </canvas>
+                    </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
 
     <!-- Recent Transactions -->
@@ -144,8 +134,7 @@
                         <td>Salary</td>
                         <td>Income</td>
                         <td><span class="badge bg-success">Income</span></td>
-                        <td
-                            class="text-success text-end fw-semibold">+₹54,200</td>
+                        <td class="text-success text-end fw-semibold">+₹54,200</td>
                     </tr>
                     <tr>
                         <td>May 23</td>
@@ -161,8 +150,7 @@
         <!-- CARD LIST VIEW: Mobile only (below md) -->
         <div class="d-md-none d-flex flex-column gap-2">
 
-            <div
-                class="d-flex justify-content-between align-items-center border rounded px-3 py-2">
+            <div class="d-flex justify-content-between align-items-center border rounded px-3 py-2">
                 <div>
                     <div class="fw-semibold small">Swiggy Order</div>
                     <div class="text-muted">May 25 &middot; Food</div>
@@ -173,8 +161,7 @@
                 </div>
             </div>
 
-            <div
-                class="d-flex justify-content-between align-items-center border rounded px-3 py-2">
+            <div class="d-flex justify-content-between align-items-center border rounded px-3 py-2">
                 <div>
                     <div class="fw-semibold small">Salary</div>
                     <div class="text-muted">May 24 &middot; Income</div>
@@ -185,8 +172,7 @@
                 </div>
             </div>
 
-            <div
-                class="d-flex justify-content-between align-items-center border rounded px-3 py-2">
+            <div class="d-flex justify-content-between align-items-center border rounded px-3 py-2">
                 <div>
                     <div class="fw-semibold small">Uber Ride</div>
                     <div class="text-muted">May 23 &middot; Travel</div>
