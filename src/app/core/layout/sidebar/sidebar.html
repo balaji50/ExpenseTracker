@@ -1,4 +1,4 @@
-<div class="bg-dark text-white vh-100 p-4 featureItems">
+<div class="bg-dark text-white vh-100 p-4 overflow-y-auto featureItems">
 
     <div class="d-flex align-items-center gap-3">
         <div class="bg-primary p-1 rounded-3 d-flex align-items-center justify-content-center trackerLogo">
@@ -13,37 +13,44 @@
 
     <ul class="nav flex-column mt-5">
         <li class="nav-item">
-            <a class="nav-link text-white" routerLink="/dashboard"><i
-                    class="bi bi-house-door-fill pe-2"></i>Dashboard</a>
+            <a class="nav-link text-white" routerLink="/dashboard" (click)="onNavClicked()">
+                <i class="bi bi-house-door-fill pe-2"></i>Dashboard</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link text-white" routerLink="/expenses"><i class="bi bi-plus-circle-fill pe-2"></i>Add
+            <a class="nav-link text-white" routerLink="/expenses" (click)="onNavClicked()"><i
+                    class="bi bi-plus-circle-fill pe-2"></i>Add
                 Expense</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link text-white" routerLink="/transactions"><i class="bi bi-bank pe-2"></i>Transactions</a>
+            <a class="nav-link text-white" routerLink="/transactions" (click)="onNavClicked()"><i
+                    class="bi bi-bank pe-2"></i>Transactions</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link text-white" routerLink="/groups"><i class="bi bi-people pe-2"></i>Groups</a>
+            <a class="nav-link text-white" routerLink="/groups" (click)="onNavClicked()"><i
+                    class="bi bi-people pe-2"></i>Groups</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link text-white" routerLink="/categories"><i class="bi bi-tags pe-2"></i>Categories</a>
+            <a class="nav-link text-white" routerLink="/categories" (click)="onNavClicked()"><i
+                    class="bi bi-tags pe-2"></i>Categories</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link text-white" routerLink="/reports"><i class="bi bi-graph-up pe-2"></i>Reports</a>
+            <a class="nav-link text-white" routerLink="/reports" (click)="onNavClicked()"><i
+                    class="bi bi-graph-up pe-2"></i>Reports</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link text-white" routerLink="/budget"><i class="bi bi-piggy-bank pe-2"></i>Budget</a>
+            <a class="nav-link text-white" routerLink="/budget" (click)="onNavClicked()"><i
+                    class="bi bi-piggy-bank pe-2"></i>Budget</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link text-white" routerLink="/settings"><i class="bi bi-gear pe-2"></i>Settings</a>
+            <a class="nav-link text-white" routerLink="/settings" (click)="onNavClicked()"><i
+                    class="bi bi-gear pe-2"></i>Settings</a>
         </li>
     </ul>
 

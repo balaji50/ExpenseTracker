@@ -1,0 +1,41 @@
+.sidebar-wrapper {
+    width: 230px;
+    height: 100vh;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+    z-index: 1050;
+    background: #212529;
+    overflow: hidden;
+}
+
+/* MOBILE LOGIC (Default) */
+@media (max-width: 1023px) {
+    .sidebar-wrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .sidebar-wrapper.sidebar-closed {
+        transform: translateX(-100%);
+        width: 230px;
+    }
+
+    .sidebar-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1040;
+    }
+}
+
+/* DESKTOP LOGIC */
+@media (min-width: 1024px) {
+    .sidebar-wrapper.sidebar-closed {
+        transform: translateX(-100%);
+        width: 0;
+        overflow: hidden;
+    }
+}

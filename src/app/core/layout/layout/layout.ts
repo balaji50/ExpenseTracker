@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 })
 export class Layout {
 
-  isSdiebarOpen: boolean = true;
+  isSidebarOpen: boolean = true;
 
   constructor
     (
@@ -26,17 +26,24 @@ export class Layout {
   // Reuseable function for toggle btn
   toggleState() {
     this.sidebarService.sidebarStatus.subscribe(state => {
-      this.isSdiebarOpen = state;
+      this.isSidebarOpen = state;
     })
+  }
+
+  closeSidebarOnMobile() {
+    if (window.innerWidth <= 768) {
+      this.isSidebarOpen = false;
+    }
   }
 
   // Detect screen size
   @HostListener('window:resize', [])
   onresize() {
-    if (window?.innerWidth < 768) {
+    const width = window?.innerWidth;
+    if (width < 768) {
       this.sidebarService.closeSidebar();
       this.toggleState();
-    } else if (window?.innerWidth > 768) {
+    } else if (width > 768) {
       this.sidebarService.openSidebar();
     }
   }
